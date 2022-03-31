@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tugas Besar | Grafika Komputer</title>
+    <style>
+      #canvas {
+        border: 2px solid black;
+      }
+      #canvas2 {
+        border: 2px solid black;
+      }
+    </style>
+    <script src="./Library.js"></script>
+  </head>
+  <body>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <button id="button" type="submit" onclick="copy()">Button</button>
+    <canvas id="canvas2" width="400" height="400"></canvas>
+
+    <script>
+      var canvas = document.querySelector("#canvas");
+      var ctx = canvas.getContext("2d");
+      var imageData = ctx.getImageData(
+        0,
+        0,
+        canvas.clientWidth,
+        canvas.clientHeight
+      );
+
+      var array = [
+        { x: 100, y: 100 },
+        { x: 200, y: 200 },
+        { x: 150, y: 250 },
+      ];
+
+      const canvas2 = (array) => {
+        var canvas2 = document.querySelector("#canvas2");
+        var ctx2 = canvas2.getContext("2d");
+        var imageData2 = ctx2.getImageData(
+          0,
+          0,
+          canvas2.clientWidth,
+          canvas2.clientHeight
+        );
+
+        // Write your code here
+        polygon(imageData2, array, 255, 0, 0);
+        /*garis(
+          imageData2,
+          array[0].x,
+          array[0].y,
+          array[1].x,
+          array[1].y,
+          255,
+          0,
+          0
+        );
+        */
+        // End of code
+
+        ctx2.putImageData(imageData2, 0, 0);
+      };
+      const copy = () => {
+        canvas2(array);
+      };
+      // Write your code here
+      /*garis(
+        imageData,
+        array[0].x,
+        array[0].y,
+        array[1].x,
+        array[1].y,
+        255,
+        0,
+        0
+      );
+      */
+      polygon(imageData, array, 255, 0, 0);
+
+      floodFillStack(
+        imageData,
+        canvas,
+        100,
+        100,
+        { r: 0, g: 0, b: 0 },
+        { r: 255, g: 0, b: 0 }
+      );
+      // End of code
+
+      ctx.putImageData(imageData, 0, 0);
+    </script>
+  </body>
+</html>
